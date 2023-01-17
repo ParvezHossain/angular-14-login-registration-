@@ -16,12 +16,15 @@ export class SignupService {
   constructor(private http:HttpClient) { }
 
   login(model: LoginRequestModel){
-    return this.http.post<LoginResponseModel>(this.baseUrl+"/login", model);
+    console.log("model", model);
+    
+    return this.http.post<LoginResponseModel>(this.baseUrl+"/user/login", model);
   }
 
   
   signup(model: SignupRquestModel){
-    return this.http.post<Status>(this.baseUrl+"/registration", model)
+    delete model.confirmPassword;
+    return this.http.post<Status>(this.baseUrl+"/user/register", model)
   }
 
   changePassoword(model: LoginRequestModel){

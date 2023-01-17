@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Status } from '../models/status';
+import { SignupService } from '../services/signup.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent {
 		return this.form.controls;
 	}
 	
+	constructor(private signupService: SignupService, private formBuilder: FormBuilder){}
+
 	onPost(){
 		
 	}

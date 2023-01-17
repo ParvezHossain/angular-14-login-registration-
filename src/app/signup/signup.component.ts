@@ -21,7 +21,25 @@ export class SignupComponent implements OnInit{
 	}
 
 	onPost(){
+		console.log("Something");
 		console.log(this.form.value);
+
+		this.status = { statusCode: 0, message: "Wait..." }
+		this.signupService.signup(this.form.value).subscribe({
+			next: (res) => {
+				console.log(res);
+				this.status = res;
+				this.form.reset();
+			},
+			error: (err) => {
+				this.status.statusCode = 0;
+				this.status.message = "Internal server error";
+				console.log(err);
+			},
+			complete: () => {
+
+			}
+		})
 		
 	}
 
@@ -35,8 +53,8 @@ export class SignupComponent implements OnInit{
 			"username": ["", Validators.required],
 			"password": ["", [Validators.required, ValidPattern(patternRegex)]],
 			"confirmPassword": ["", Validators.required],
-		}, {
+		}, /* {
 			validator: Mustmatch("password", "confirmPassword")
-		})
+		} */)
 	}
 }
