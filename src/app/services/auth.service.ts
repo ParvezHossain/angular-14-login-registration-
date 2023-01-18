@@ -27,7 +27,7 @@ export class AuthService {
     }
 
     getAccessToken(){
-        return localStorage.getItem("AccessToken");
+        return localStorage.getItem("accessToken");
     }
 
     getUsername () {
@@ -46,13 +46,13 @@ export class AuthService {
         const decodedString: string = atob(tokenSplit);
         const jsonString = JSON.parse(decodedString);
         const expiry = (jsonString).exp;
-        
-        return(Math.floor((new Date).getTime() / 1000)) >= expiry;
+        // console.log("expiry", Math.floor((new Date).getTime() / 1000));
+        return(Math.floor((new Date).getTime())) >= expiry;
     }
 
     logout() {
         localStorage.removeItem("username");
-        localStorage.removeItem("AccessToken");
+        localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         this.router.navigate(['/login']);
     }

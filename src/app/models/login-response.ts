@@ -4,4 +4,6 @@ export interface LoginResponseModel {
       expiration: string,
       name: string,
       username: string,
+      statusCode: number,
+      message: string,
 }

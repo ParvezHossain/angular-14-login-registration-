@@ -29,17 +29,16 @@ export class LoginComponent implements OnInit{
 				this.authService.addAccessToken(res.token);
 				this.authService.addRefreshToken(res.refreshToken);
 				this.authService.addUserName(res.username);
-				// this.status.statusCode = res.statusCode;
-				// this.status.message = res.message;
-				// if(res.statusCode==1){
-				// 	this.router.navigate(['./dashboard']);
-				// }
+				this.status.statusCode = res.statusCode;
+				this.status.message = res.message;
+				if(res.statusCode == 200){
+					this.router.navigate(['./dashboard']);
+				}
 			},
 
 			error: (error) => {
-				console.error(error);
 				this.status.statusCode = 0;
-				this.status.message = "Server error!";
+				this.status.message = error.statusText;
 			}
 		})
 	}

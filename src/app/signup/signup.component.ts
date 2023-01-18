@@ -21,9 +21,6 @@ export class SignupComponent implements OnInit{
 	}
 
 	onPost(){
-		console.log("Something");
-		console.log(this.form.value);
-
 		this.status = { statusCode: 0, message: "Wait..." }
 		this.signupService.signup(this.form.value).subscribe({
 			next: (res) => {
@@ -37,7 +34,8 @@ export class SignupComponent implements OnInit{
 				console.log(err);
 			},
 			complete: () => {
-
+				this.status.statusCode = 0;
+				this.status.message = "";
 			}
 		})
 		
