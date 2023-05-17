@@ -11,7 +11,7 @@ export class AuthService {
     constructor(private router: Router, private tokenService: TokenService){}
     
     isLoggedIn (){
-        return !!this.getAccessToken() && !!this.isTokenExpired();
+        return !!this.getAccessToken() && !!!this.isTokenExpired();
     }
 
     addUserName(username: string){
@@ -27,11 +27,11 @@ export class AuthService {
     }
 
     getAccessToken(){
-        return localStorage.getItem("AccessToken");
+        return localStorage.getItem("accessToken");
     }
 
-    getUsername () {
-        return localStorage.getItem("username");
+    getUsername (): string {
+        return localStorage.getItem("username")?? '';
     }
     getRereshToken(){
         return localStorage.getItem("refreshToken");
@@ -41,12 +41,10 @@ export class AuthService {
         const token: string = this.getAccessToken()?? "";
         
         if (!token) return false;
-
         const tokenSplit: string = token.split(".")[1];
         const decodedString: string = atob(tokenSplit);
         const jsonString = JSON.parse(decodedString);
         const expiry = (jsonString).exp;
-        
         return(Math.floor((new Date).getTime() / 1000)) >= expiry;
     }
 

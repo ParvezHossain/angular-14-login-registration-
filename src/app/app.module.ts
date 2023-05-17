@@ -11,6 +11,8 @@ import { UserComponent } from './user/user.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InterceptorService } from './services/interceptor.service';
+import { LogoutComponent } from './logout/logout.component';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { InterceptorService } from './services/interceptor.service';
     LoginComponent,
     SignupComponent,
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +29,17 @@ import { InterceptorService } from './services/interceptor.service';
     HttpClientModule, 
     ReactiveFormsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
-  }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: InterceptorService, 
+      multi: true
+    },{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

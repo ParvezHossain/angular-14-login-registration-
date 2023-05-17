@@ -7,9 +7,8 @@ import { RefreshTokenRequest } from "../models/refresh-token-request";
     providedIn: "root",
 })
 export class TokenService {
+    private baseUrl: string = environment.baseUrl+'/token'
     constructor(private http: HttpClient){}
-
-    private baseUrl: string =environment.baseUrl+'/token'
 
     generateRefreshToken(data: RefreshTokenRequest){
         const url = this.baseUrl+"/refresh";

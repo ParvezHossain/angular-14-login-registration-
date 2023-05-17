@@ -21,9 +21,7 @@ export class SignupComponent implements OnInit{
 	}
 
 	onPost(){
-		console.log("Something");
-		console.log(this.form.value);
-
+		console.log("Something....");
 		this.status = { statusCode: 0, message: "Wait..." }
 		this.signupService.signup(this.form.value).subscribe({
 			next: (res) => {

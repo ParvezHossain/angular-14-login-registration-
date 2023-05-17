@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit{
 				// if(res.statusCode==1){
 				// 	this.router.navigate(['./dashboard']);
 				// }
+				this.router.navigate(['./dashboard']);
 			},
 
 			error: (error) => {

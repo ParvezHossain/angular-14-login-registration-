@@ -16,8 +16,6 @@ export class SignupService {
   constructor(private http:HttpClient) { }
 
   login(model: LoginRequestModel){
-    console.log("model", model);
-    
     return this.http.post<LoginResponseModel>(this.baseUrl+"/user/login", model);
   }
 
