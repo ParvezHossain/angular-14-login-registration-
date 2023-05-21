@@ -1,0 +1,27 @@
+  table {
+    border-collapse: collapse;
+    width: 50%;
+  }
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  .green {
+    color: green;
+    background-color: chartreuse;
+    text-align: center;
+  }
+  
+  .red {
+    color: red;
+    background-color: antiquewhite;
+    text-align: center;
+  }
+  

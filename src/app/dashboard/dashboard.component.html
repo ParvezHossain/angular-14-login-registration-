@@ -1,27 +1,28 @@
-<div style="display: flex; justify-content: space-evenly;">
-    <div>
-        Welcome to the dashboard page;
-    </div>
-    <div>
-        Hello {{loggedInUser}}
-    </div>
-    <div *ngIf="isLoggedIn" style="margin-left: 10px;">
-        <button (click)="logout()">Logout</button>
-    </div>
+<div style="display: flex; justify-content: space-evenly">
+  <div>Welcome to the dashboard page;</div>
+  <div>Hello {{ loggedInUser }}</div>
+  <div *ngIf="isLoggedIn" style="margin-left: 10px">
+    <button (click)="logout()">Logout</button>
+  </div>
 </div>
 
-<!-- <div>
-    <table>
-        <thead>
-          <tr>
-            <th *ngFor="let column of taskList">{{ column }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of taskList">
-            <td *ngFor="let column of taskList">{{ row[column] }}</td>
-          </tr>
-        </tbody>
-      </table>
-</div> -->
+<!-- <app-task></app-task> -->
 
+<h1 style="margin-bottom: 10px">Task List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of taskList">
+      <td>{{ task.name | uppercase }}</td>
+      <td [ngClass]="{ green: task.completed, red: !task.completed }">
+        {{ task.completed ? "Completed" : "Incomplete" }}
+      </td>
+    </tr>
+  </tbody>
+</table>

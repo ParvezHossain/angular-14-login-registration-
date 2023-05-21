@@ -10,9 +10,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InterceptorService } from './services/interceptor.service';
 import { LogoutComponent } from './logout/logout.component';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
+import { UppercasePipe } from './helpers/uppercase.pipe';
+import { TaskComponent } from './task/task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,25 +22,23 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
     SignupComponent,
     DashboardComponent,
     UserComponent,
-    LogoutComponent
+    LogoutComponent,
+    UppercasePipe,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
-    ReactiveFormsModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, 
-      useClass: InterceptorService, 
-      multi: true
-    },{
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
-    }
-],
-  bootstrap: [AppComponent]
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,48 @@
+<div class="form-container">
+  <div class="form task">
+    <form [formGroup]="form" (ngSubmit)="onPost()">
+      <div class="title">Create Task</div>
+      <div class="input-container">
+        <input
+          type="text"
+          formControlName="name"
+          name="name"
+          class="input"
+          placeholder="name"
+        />
+      </div>
+      <div
+        class="msg error"
+        *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
+      >
+        <span *ngIf="f['name'].errors?.['required']">
+          Task name is required
+        </span>
+      </div>
+
+      <div class="input-container">
+        <input
+          type="checkbox"
+          formControlName="completed"
+          name="completed"
+          class="input"
+          id="completed"
+        />
+        <label for="completed">Completed</label>
+      </div>
+      <div
+        class="msg error"
+        *ngIf="
+          f['completed'].invalid &&
+          (f['completed'].dirty || f['completed'].touched)
+        "
+      >
+        <span *ngIf="f['completed'].errors?.['required']">
+          Status is required
+        </span>
+      </div>
+
+      <button type="submit" id="btnSubmit">Create Task</button>
+    </form>
+  </div>
+</div>
